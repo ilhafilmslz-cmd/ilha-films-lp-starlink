@@ -15,21 +15,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ error: 'Token não configurado' })
   }
 
-  // Pega IP e user agent do request para enriquecer o evento
   const clientIp =
     (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
     req.socket.remoteAddress ||
     ''
 
   const userAgent = req.headers['user-agent'] || ''
-
-  // Event time em Unix timestamp
   const eventTime = Math.floor(Date.now() / 1000)
-
-  // Hash do IP para privacidade (boas práticas Meta)
   const hashedIp = crypto.createHash('sha256').update(clientIp).digest('hex')
 
-  const payload = {
+  const payload: Record<string, unknown> = {
     data: [
       {
         event_name: 'Contact',
@@ -48,7 +43,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       },
     ],
-    // test_event_code: 'TEST12345', // descomente para testar no Meta Events Manager
+  }
+
+  // Inclui test_event_code apenas se a variável de ambiente estiver definida
+  if (process.env.FB_TEST_CODE) {
+    payload.test_event_code = process.env.FB_TEST_CODE
   }
 
   try {
