@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilha Films — Película + Sorteio Starlink</title>
+
+<!-- ============================================
+  PIXEL META ADS — COLE AQUI QUANDO TIVER O ID
+  Substitua SEU_PIXEL_ID pelo número do seu pixel
+
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    fbq('track', 'ViewContent');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=ViewContent&noscript=1"/>
+  </noscript>
+============================================ -->
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111318;
+    --card: #16191f;
+    --blue: #1e90ff;
+    --blue-dark: #0f5fc7;
+    --yellow: #f5c518;
+    --white: #f0f2f5;
+    --gray: #8a8f9a;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,144,255,0.12) 0%, transparent 70%),
+                linear-gradient(180deg, #0d1117 0%, var(--black) 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e90ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1;
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .logo span { color: var(--blue); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(30,144,255,0.1);
+    border: 1px solid rgba(30,144,255,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hero h1 .line-blue { color: var(--blue); }
+  .hero h1 .line-yellow { color: var(--yellow); }
+
+  .hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px);
+    color: var(--gray);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .hero-sub strong { color: var(--white); }
+
+  .cta-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25d366;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.3);
+  }
+
+  .cta-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.4);
+  }
+
+  .cta-main svg { width: 22px; height: 22px; fill: white; }
+
+  .hero-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gray);
+    position: relative;
+  }
+
+  /* ── URGENCY BAR ── */
+  .urgency-bar {
+    background: var(--blue);
+    padding: 12px 24px;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── OFFERS ── */
+  .section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .offer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .offer-card:hover {
+    border-color: rgba(30,144,255,0.4);
+    transform: translateY(-3px);
+  }
+
+  .offer-card.featured {
+    border-color: rgba(30,144,255,0.5);
+    background: linear-gradient(135deg, #16191f, #0f1420);
+  }
+
+  .offer-card.featured::before {
+    content: 'MAIS VENDIDO';
+    position: absolute;
+    top: 16px; right: -24px;
+    background: var(--blue);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 32px;
+    transform: rotate(45deg) translateX(8px);
+  }
+
+  .offer-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .offer-price-old {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .offer-price-new {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .offer-price-new span {
+    font-size: 18px;
+    font-weight: 600;
+    vertical-align: super;
+    margin-right: 2px;
+  }
+
+  .offer-savings {
+    display: inline-block;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.3);
+    color: var(--yellow);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .offer-features {
+    list-style: none;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 2;
+  }
+
+  .offer-features li::before {
+    content: '✓ ';
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  /* ── STARLINK BANNER ── */
+  .starlink-section {
+    background: linear-gradient(135deg, #0d1117 0%, #0a0f1a 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .starlink-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(30,144,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .starlink-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .starlink-icon {
+    font-size: 56px;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .starlink-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .starlink-title .highlight { color: var(--blue); }
+
+  .starlink-desc {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .starlink-steps {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .step-arrow {
+    color: var(--gray);
+    margin: 0 12px;
+    font-size: 18px;
+  }
+
+  /* ── BENEFITS ── */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .benefit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .benefit-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+
+  .benefit-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .benefit-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, #0d1117, #0a0a0a);
+    padding: 80px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .final-cta h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .final-cta p {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cta-secondary {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+
+  /* ── STICKY CTA MOBILE ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #25d366;
+    padding: 16px 24px;
+    text-align: center;
+    z-index: 100;
+    display: none;
+  }
+
+  .sticky-cta a {
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .sticky-cta { display: block; }
+    body { padding-bottom: 64px; }
+    .step-arrow { display: none; }
+    .starlink-steps { flex-direction: column; align-items: center; gap: 12px; }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 40px; height: 3px;
+    background: var(--blue);
+    margin: 0 0 48px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  ⚡ Promoção válida somente em março e abril — Últimas Unidades!
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="starsCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%;">
+  <div class="logo">ILHA FILMS · <span>São Luís — MA</span></div>
+
+  <div class="badge">Promoção março & abril 2025</div>
+
+  <h1>
+    Película top.<br>
+    <span class="line-blue">Preço que não dói.</span><br>
+    <span class="line-yellow">Starlink de brinde.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Aplique <strong>Window Premium, Window Blue ou Max Vision</strong> e concorra a uma <strong>Mini Starlink</strong> — com desconto de até R$491.
+  </p>
+
+  <a class="cta-main" onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');}" href="https://wa.me/5598970267386?text=Olá!%20Vim%20pelo%20anúncio%20e%20quero%20saber%20mais%20sobre%20a%20promoção%20de%20película." target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Agendar pelo WhatsApp
+  </a>
+
+  <p class="hero-note">Atendimento rápido · Sem compromisso</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const canvas = document.getElementById('starsCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let W, H;
+
+  function resize(){
+    const section = canvas.parentElement;
+    W = canvas.width = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+
+  function createStars(n){
+    stars = [];
+    for(let i=0;i<n;i++){
+      stars.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*1.4+0.2,
+        alpha: Math.random(),
+        speed: Math.random()*0.4+0.05,
+        dx: (Math.random()-0.5)*0.15,
+        dy: (Math.random()-0.5)*0.15,
+        twinkleSpeed: Math.random()*0.015+0.005,
+        twinkleDir: Math.random()>0.5?1:-1
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let s of stars){
+      // twinkle
+      s.alpha += s.twinkleSpeed * s.twinkleDir;
+      if(s.alpha>=1){s.alpha=1;s.twinkleDir=-1;}
+      if(s.alpha<=0.05){s.alpha=0.05;s.twinkleDir=1;}
+
+      // drift
+      s.x += s.dx;
+      s.y += s.dy;
+      if(s.x<0)s.x=W;
+      if(s.x>W)s.x=0;
+      if(s.y<0)s.y=H;
+      if(s.y>H)s.y=0;
+
+      // draw star with glow
+      ctx.save();
+      ctx.globalAlpha = s.alpha;
+      // glow
+      const grd = ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*4);
+      grd.addColorStop(0,'rgba(180,220,255,0.6)');
+      grd.addColorStop(1,'rgba(180,220,255,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r*4,0,Math.PI*2);
+      ctx.fill();
+      // core
+      ctx.fillStyle = 'rgba(220,235,255,1)';
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  function init(){
+    resize();
+    createStars(220);
+    draw();
+  }
+
+  window.addEventListener('resize',()=>{
+    resize();
+    createStars(220);
+  });
+
+  // wait for section to have height
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 50);
+  }
+})();
+</script>
+
+<!-- OFFERS -->
+<section class="section">
+  <p class="section-label">Serviços elegíveis</p>
+  <h2 class="section-title">Escolha sua película</h2>
+  <div class="divider"></div>
+
+  <div class="offers-grid">
+
+    <div class="offer-card" onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');} window.open('https://wa.me/5598970267386?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Blue%20por%20R%24999.%20Vi%20a%20promoção%20de%20março%2Fabril%20e%20quero%20agendar!','_blank')" style="cursor:pointer;">
+      <div class="offer-name">Window Blue</div>
+      <div class="offer-price-old">de R$ 1.490</div>
+      <div class="offer-price-new"><span>R$</span>999</div>
+      <div class="offer-savings">Economia de R$491</div>
+      <ul class="offer-features">
+        <li>Proteção solar avançada</li>
+        <li>Tonalidade azulada premium</li>
+        <li>Redução de calor</li>
+        <li>Concorre ao sorteio</li>
+      </ul>
+      <div style="margin-top:20px;background:#25d366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:6px;text-align:center;">Quero essa → WhatsApp</div>
+    </div>
+
+    <div class="offer-card featured" onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');} window.open('https://wa.me/5598970267386?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Premium%20por%20R%24799.%20Vi%20a%20promoção%20de%20março%2Fabril%20e%20quero%20agendar!','_blank')" style="cursor:pointer;">
+      <div class="offer-name">Window Premium</div>
+      <div class="offer-price-old">de R$ 1.290</div>
+      <div class="offer-price-new"><span>R$</span>799</div>
+      <div class="offer-savings">Economia de R$491</div>
+      <ul class="offer-features">
+        <li>Alta performance térmica</li>
+        <li>Proteção UV completa</li>
+        <li>Maior privacidade</li>
+        <li>Concorre ao sorteio</li>
+      </ul>
+      <div style="margin-top:20px;background:#25d366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:6px;text-align:center;">Quero essa → WhatsApp</div>
+    </div>
+
+    <div class="offer-card" onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');} window.open('https://wa.me/5598970267386?text=Olá!%20Tenho%20interesse%20na%20película%20Max%20Vision%20por%20R%241.799.%20Vi%20a%20promoção%20de%20março%2Fabril%20e%20quero%20agendar!','_blank')" style="cursor:pointer;">
+      <div class="offer-name">Max Vision</div>
+      <div class="offer-price-old">de R$ 2.000</div>
+      <div class="offer-price-new"><span>R$</span>1.799</div>
+      <div class="offer-savings">Economia de R$201</div>
+      <ul class="offer-features">
+        <li>Tecnologia máxima</li>
+        <li>Visibilidade perfeita</li>
+        <li>Proteção total UV/IR</li>
+        <li>Concorre ao sorteio</li>
+      </ul>
+      <div style="margin-top:20px;background:#25d366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;padding:10px;border-radius:6px;text-align:center;">Quero essa → WhatsApp</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STARLINK BANNER -->
+<div class="starlink-section">
+  <div class="starlink-inner">
+    <span class="starlink-icon">🛰️</span>
+    <h2 class="starlink-title">Concorra a uma<br><span class="highlight">Starlink Mini</span></h2>
+    <p class="starlink-desc">
+      Quem aplicar qualquer uma das películas elegíveis em março ou abril entra automaticamente no sorteio. Simples assim.
+    </p>
+    <div class="starlink-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        Aplique a película
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        Entra no sorteio
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        Sorteio em maio
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="section">
+  <p class="section-label">Por que Ilha Films</p>
+  <h2 class="section-title">Película de verdade</h2>
+  <div class="divider"></div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="benefit-icon">🌡️</span>
+      <div class="benefit-title">Menos calor</div>
+      <p class="benefit-desc">Reduz até 60% do calor no interior do carro. Essencial em São Luís.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🕶️</span>
+      <div class="benefit-title">Mais privacidade</div>
+      <p class="benefit-desc">Vidros escurecidos com qualidade e dentro da legislação.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">☀️</span>
+      <div class="benefit-title">Proteção UV</div>
+      <p class="benefit-desc">Bloqueia raios UV que danificam o interior e a pele.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">✅</span>
+      <div class="benefit-title">Aplicação profissional</div>
+      <p class="benefit-desc">Equipe especializada, sem bolhas, sem imperfeições.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Pronto pra proteger<br>seu carro?</h2>
+  <p>Agende agora pelo WhatsApp. Atendimento rápido, sem enrolação.</p>
+  <div class="cta-group">
+    <a class="cta-main" onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');}" href="https://wa.me/5598970267386?text=Olá!%20Vim%20pelo%20anúncio%20e%20quero%20saber%20mais%20sobre%20a%20promoção%20de%20película." target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar pelo WhatsApp
+    </a>
+    <p class="cta-secondary">Só em março e abril · São Luís - MA</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>ILHA FILMS</strong> · Películas Automotivas · São Luís - MA<br>
+  📍 Av. Jerônimo de Albuquerque, 93 - Cohafuma, São Luís - MA, 65070-650<br>
+  Sorteio realizado em maio. Prêmio: Mini Starlink. Não inclui instalação. Não conversível em dinheiro.<br>
+  © 2025 Ilha Films. Todos os direitos reservados.
+</footer>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta">
+  <a onclick="if(typeof fbq!=='undefined'){fbq('track','Contact');}" href="https://wa.me/5598970267386?text=Olá!%20Vim%20pelo%20anúncio%20e%20quero%20saber%20mais%20sobre%20a%20promoção%20de%20película." target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Agendar pelo WhatsApp agora
+  </a>
+</div>
+
+</body>
+</html>
