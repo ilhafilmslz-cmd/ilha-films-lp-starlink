@@ -539,3 +539,48 @@ footer {
   .step-arrow { display: none; }
   .starlink-steps { flex-direction: column; align-items: center; gap: 12px; }
 }
+
+/* ── URGENCY BAR ANIMADA ── */
+.urgency-bar {
+  background: var(--yellow);
+  color: #111;
+  padding: 11px 24px;
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.urgency-text {
+  display: inline-block;
+  animation: urgencyPulse 3s ease-in-out infinite;
+}
+
+@keyframes urgencyPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+
+/* ── URGÊNCIA ACIMA DO CTA ── */
+.cta-urgency {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--yellow);
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER MAP LINK ── */
+.footer-map-link {
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-map-link:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
