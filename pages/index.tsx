@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import Script from 'next/script'
 
 // ── Ícone WhatsApp ──────────────────────────────────────────────────────────
 const WaIcon = () => (
@@ -10,19 +11,20 @@ const WaIcon = () => (
 // ── Links WhatsApp por película ─────────────────────────────────────────────
 const WA_BASE = 'https://wa.me/5598970267386'
 const WA_LINKS = {
-  geral:    `${WA_BASE}?text=Olá!%20Vim%20pelo%20anúncio%20e%20quero%20saber%20mais%20sobre%20a%20promoção%20de%20película.`,
-  blue:     `${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Blue%20por%20R%24999.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
-  premium:  `${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Premium%20por%20R%24799.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
-  maxvision:`${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Max%20Vision%20por%20R%241.799.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
+  geral:     `${WA_BASE}?text=Olá!%20Vim%20pelo%20anúncio%20e%20quero%20saber%20mais%20sobre%20a%20promoção%20de%20película.`,
+  blue:      `${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Blue%20por%20R%24999.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
+  premium:   `${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Window%20Premium%20por%20R%24799.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
+  maxvision: `${WA_BASE}?text=Olá!%20Tenho%20interesse%20na%20película%20Max%20Vision%20por%20R%241.799.%20Vi%20a%20promoção%20e%20quero%20agendar!`,
 }
+
+const MAPS_LINK = 'https://maps.app.goo.gl/kr1uZzcD78XRbJFf7'
+const PIXEL_ID = '1463619988729054'
 
 // ── Helper: dispara Pixel + CAPI simultaneamente ────────────────────────────
 function trackContact(contentName = 'Pelicula Automotiva') {
-  // 1. Pixel no navegador
   if (typeof window !== 'undefined' && (window as any).fbq) {
     (window as any).fbq('track', 'Contact')
   }
-  // 2. CAPI via servidor (assíncrono, não bloqueia navegação)
   fetch('/api/capi', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -31,7 +33,7 @@ function trackContact(contentName = 'Pelicula Automotiva') {
       fbc: getCookie('_fbc'),
       fbp: getCookie('_fbp'),
     }),
-  }).catch(() => {}) // silencia erros de rede
+  }).catch(() => {})
 }
 
 function getCookie(name: string): string {
@@ -60,39 +62,69 @@ export default function Home() {
 
   return (
     <>
+      <Script
+        id="fb-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${PIXEL_ID}');
+            fbq('track', 'PageView');
+          `,
+        }}
+      />
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: 'none' }}
+          src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+          alt="facebook pixel"
+        />
+      </noscript>
+
       {/* ── URGENCY BAR ── */}
       <div className="urgency-bar">
-        Participe da Promoção esse Mês!
+        <span className="urgency-text">
+          🔥 <strong>ÚLTIMAS VAGAS COM R$500 OFF PARA ESTA SEMANA EM SÃO LUÍS!</strong>
+        </span>
       </div>
 
       {/* ── HERO ── */}
       <section className="hero">
-        {/* Carrossel de fundo */}
         <div className="hero-carousel" aria-hidden="true">
           {[0, 1, 2, 3].map(i => (
-            <div
-              key={i}
-              className={`hero-carousel-slide${slide === i ? ' active' : ''}`}
-            />
+            <div key={i} className={`hero-carousel-slide${slide === i ? ' active' : ''}`} />
           ))}
         </div>
         <div className="hero-overlay" />
 
-        {/* Conteúdo */}
         <div className="hero-content">
           <div className="logo">ILHA FILMS · <span>São Luís — MA</span></div>
 
-          <div className="badge">Promoção Março &amp; Abril</div>
+          <div className="badge">Promoção Março & Abril</div>
 
           <h1>
-            <span className="white">Instale Película Premium </span>
-            <span className="blue">e Concorra a uma Starlink Mini.</span>
+            <span className="white">Vença o calor de São Luís e transforme seu carro em uma </span>
+            <span className="blue">zona de conforto.</span>
           </h1>
 
           <p className="hero-sub">
-            Oferta especial do <strong>Mês do Consumidor</strong>. Clientes que instalarem película{' '}
-            <strong>Window Premium, Blue e Max Vision</strong> participam automaticamente do sorteio.
+            Reduza drasticamente o calor interno com nossas películas{' '}
+            <strong>Window Premium, Blue e Max Vision</strong>. Garanta seu bônus de{' '}
+            <strong>R$500 OFF</strong> e participe automaticamente do sorteio da{' '}
+            <strong>Starlink Mini</strong>.
           </p>
+
+          {/* Urgência acima do CTA */}
+          <p className="cta-urgency">🔥 Oferta limitada ao Mês do Consumidor</p>
 
           <button
             className="cta-main"
@@ -114,7 +146,6 @@ export default function Home() {
 
         <div className="offers-grid">
 
-          {/* Window Blue */}
           <div className="offer-card" onClick={() => openWa(WA_LINKS.blue, 'Window Blue')}>
             <div className="offer-name">Window Blue</div>
             <div className="offer-price-old">de R$ 1.490</div>
@@ -129,7 +160,6 @@ export default function Home() {
             <button className="offer-cta-btn">Quero essa → WhatsApp</button>
           </div>
 
-          {/* Window Premium */}
           <div className="offer-card featured" onClick={() => openWa(WA_LINKS.premium, 'Window Premium')}>
             <div className="offer-name">Window Premium</div>
             <div className="offer-price-old">de R$ 1.290</div>
@@ -144,7 +174,6 @@ export default function Home() {
             <button className="offer-cta-btn">Quero essa → WhatsApp</button>
           </div>
 
-          {/* Max Vision */}
           <div className="offer-card" onClick={() => openWa(WA_LINKS.maxvision, 'Max Vision')}>
             <div className="offer-name">Max Vision</div>
             <div className="offer-price-old">de R$ 2.000</div>
@@ -218,6 +247,7 @@ export default function Home() {
         <h2>Pronto pra proteger<br />seu carro?</h2>
         <p>Agende agora pelo WhatsApp. Atendimento rápido, sem enrolação.</p>
         <div className="cta-group">
+          <p className="cta-urgency">🔥 Oferta limitada ao Mês do Consumidor</p>
           <button
             className="cta-main"
             onClick={() => openWa(WA_LINKS.geral, 'CTA Final')}
@@ -232,9 +262,17 @@ export default function Home() {
       {/* ── FOOTER ── */}
       <footer>
         <strong>ILHA FILMS</strong> · Películas Automotivas · São Luís - MA<br />
-        📍 Av. Jerônimo de Albuquerque, 93 - Cohafuma, São Luís - MA, 65070-650<br />
+        <a 
+          href={MAPS_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-map-link"
+        >
+          📍 Av. Jerônimo de Albuquerque, 93 - Cohafuma, São Luís - MA, 65070-650
+        </a>
+        <br />
         Sorteio realizado em maio. Prêmio: Mini Starlink. Não inclui instalação. Não conversível em dinheiro.<br />
-        © 2025 Ilha Films. Todos os direitos reservados.
+        © 2026 Ilha Films. Todos os direitos reservados.
       </footer>
 
       {/* ── STICKY CTA MOBILE ── */}
