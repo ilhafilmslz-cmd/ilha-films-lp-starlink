@@ -584,3 +584,43 @@ footer {
   color: var(--blue);
   text-decoration: underline;
 }
+
+/* ── PROVA SOCIAL (DEPOIMENTOS) ── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial-img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.starlink-section.compact {
+  padding: 40px 20px;
+  text-align: center;
+}

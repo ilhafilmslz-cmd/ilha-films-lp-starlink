@@ -198,56 +198,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STARLINK ── */}
-      <div className="starlink-section">
-        <div className="starlink-inner">
-          <span className="starlink-icon">🛰️</span>
-          <h2 className="starlink-title">
-            Concorra a uma<br />
-            <span className="highlight">Starlink Mini</span>
-          </h2>
-          <p className="starlink-desc">
-            Quem aplicar qualquer uma das películas elegíveis em março ou abril
-            entra automaticamente no sorteio. Simples assim.
-          </p>
-          <div className="starlink-steps">
-            <div className="step"><div className="step-num">1</div>Aplique a película</div>
-            <div className="step-arrow">→</div>
-            <div className="step"><div className="step-num">2</div>Entra no sorteio</div>
-            <div className="step-arrow">→</div>
-            <div className="step"><div className="step-num">3</div>Sorteio em maio</div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── BENEFÍCIOS ── */}
-      <section className="section">
-        <p className="section-label">Por que Ilha Films</p>
-        <h2 className="section-title">Película de verdade</h2>
+      {/* ── PROVA SOCIAL (DEPOIMENTOS) ── */}
+      <section className="section testimonials-section">
+        <p className="section-label">O que dizem nossos clientes</p>
+        <h2 className="section-title">Resultados Reais</h2>
         <div className="divider" />
-        <div className="benefits-grid">
-          <div className="benefit-card">
-            <span className="benefit-icon">🌡️</span>
-            <div className="benefit-title">Menos calor</div>
-            <p className="benefit-desc">Reduz até 60% do calor no interior do carro. Essencial em São Luís.</p>
+        
+        <div className="testimonials-grid">
+          <div className="testimonial-card">
+            <img src="/print1.jpg" alt="Depoimento Cliente 1" className="testimonial-img" />
+            <p className="testimonial-text">"Ficou show de bola!"</p>
           </div>
-          <div className="benefit-card">
-            <span className="benefit-icon">🕶️</span>
-            <div className="benefit-title">Mais privacidade</div>
-            <p className="benefit-desc">Vidros escurecidos com qualidade e dentro da legislação.</p>
+          <div className="testimonial-card">
+            <img src="/print2.jpg" alt="Depoimento Cliente 2" className="testimonial-img" />
+            <p className="testimonial-text">"Redução de calor: ótimo. Visibilidade: ótimo. Super satisfeito."</p>
           </div>
-          <div className="benefit-card">
-            <span className="benefit-icon">☀️</span>
-            <div className="benefit-title">Proteção UV</div>
-            <p className="benefit-desc">Bloqueia raios UV que danificam o interior e a pele.</p>
-          </div>
-          <div className="benefit-card">
-            <span className="benefit-icon">✅</span>
-            <div className="benefit-title">Aplicação profissional</div>
-            <p className="benefit-desc">Equipe especializada, sem bolhas, sem imperfeições.</p>
+          <div className="testimonial-card">
+            <img src="/print3.jpg" alt="Depoimento Cliente 3" className="testimonial-img" />
+            <p className="testimonial-text">"Tudo tranquilo top."</p>
           </div>
         </div>
       </section>
+
+      {/* ── STARLINK (RESUMO OTIMIZADO) ── */}
+      <div className="starlink-section compact">
+        <div className="starlink-inner">
+          <h2 className="starlink-title">
+            <span className="starlink-icon">🛰️</span> BÔNUS: Concorra a uma <span className="highlight">Starlink Mini</span>
+          </h2>
+          <p className="starlink-desc">
+            Instalou, concorreu! Clientes de março e abril participam automaticamente do sorteio.
+          </p>
+        </div>
+      </div>
 
       {/* ── FINAL CTA ── */}
       <div className="final-cta">
@@ -278,6 +261,7 @@ export default function Home() {
           📍 Av. Jerônimo de Albuquerque, 93 - Cohafuma, São Luís - MA, 65070-650
         </a>
         <br />
+        CNPJ: 55.814.494/0001-30<br />
         Sorteio realizado em maio. Prêmio: Mini Starlink. Não inclui instalação. Não conversível em dinheiro.<br />
         © 2026 Ilha Films. Todos os direitos reservados.
       </footer>
