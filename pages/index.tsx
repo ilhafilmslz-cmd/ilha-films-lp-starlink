@@ -207,15 +207,15 @@ export default function Home() {
         <div className="testimonials-grid">
           <div className="testimonial-card">
             {/* Se a imagem não aparecer, verifique se ela está na pasta /public e se o nome está exato */}
-            <img src="/print1.jpg" alt="Depoimento Cliente 1" className="testimonial-img" />
+            <img src="/images/print1.jpg" alt="Depoimento Cliente 1" className="testimonial-img" />
             <p className="testimonial-text">"Ficou show de bola!"</p>
           </div>
           <div className="testimonial-card">
-            <img src="/print2.jpg" alt="Depoimento Cliente 2" className="testimonial-img" />
+            <img src="/images/print2.jpg" alt="Depoimento Cliente 2" className="testimonial-img" />
             <p className="testimonial-text">"Redução de calor: ótimo. Visibilidade: ótimo. Super satisfeito."</p>
           </div>
           <div className="testimonial-card">
-            <img src="/print3.jpg" alt="Depoimento Cliente 3" className="testimonial-img" />
+            <img src="/images/print3.jpg" alt="Depoimento Cliente 3" className="testimonial-img" />
             <p className="testimonial-text">"Tudo tranquilo top."</p>
           </div>
         </div>
