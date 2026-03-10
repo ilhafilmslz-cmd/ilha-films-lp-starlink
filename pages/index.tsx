@@ -145,46 +145,54 @@ export default function Home() {
 
         <div className="offers-grid">
 
-          <div className="offer-card" onClick={() => openWa(WA_LINKS.blue, 'Window Blue')}>
-            <div className="offer-name">Window Blue</div>
-            <div className="offer-price-old">de R$ 1.490</div>
-            <div className="offer-price-new"><span>R$</span>999</div>
-            <div className="offer-savings">Economia de R$500,00</div>
-            <ul className="offer-features">
-              <li>Proteção solar avançada</li>
-              <li>Tonalidade azulada premium</li>
-              <li>Redução de calor</li>
-              <li>Concorre ao sorteio</li>
-            </ul>
-            <button className="offer-cta-btn">Quero essa → WhatsApp</button>
-          </div>
-
-          <div className="offer-card featured" onClick={() => openWa(WA_LINKS.premium, 'Window Premium')}>
+          {/* 1. WINDOW PREMIUM (Entrada) */}
+          <div className="offer-card" onClick={() => openWa(WA_LINKS.premium, 'Window Premium')}>
             <div className="offer-name">Window Premium</div>
             <div className="offer-price-old">de R$ 1.290</div>
             <div className="offer-price-new"><span>R$</span>799</div>
             <div className="offer-savings">Economia de R$500,00</div>
             <ul className="offer-features">
-              <li>Alta performance térmica</li>
-              <li>Proteção UV completa</li>
-              <li>Maior privacidade</li>
-              <li>Concorre ao sorteio</li>
+              <li>Proteção térmica de alta performance</li>
+              <li>Bloqueio completo de raios UV</li>
+              <li>Aumento significativo da privacidade</li>
+              <li>Concorre ao sorteio da Starlink</li>
             </ul>
-            <button className="offer-cta-btn">Quero essa → WhatsApp</button>
+            <button className="offer-cta-btn">QUERO ESSA</button>
           </div>
 
+          {/* 2. WINDOW BLUE (Intermediária + Mais Vendida) */}
+          <div className="offer-card featured" onClick={() => openWa(WA_LINKS.blue, 'Window Blue')}>
+            <div className="offer-name">Window Blue</div>
+            <div className="offer-price-old">de R$ 1.490</div>
+            <div className="offer-price-new"><span>R$</span>999</div>
+            <div className="offer-savings">Economia de R$500,00</div>
+            <ul className="offer-features">
+              <li><strong>Redução térmica superior</strong></li>
+              <li>Tonalidade azulada estética exclusiva</li>
+              <li>Clareza ótica cristalina (visibilidade perfeita)</li>
+              <li>Bloqueio UV de 99%</li>
+              <li>Proteção para o interior do veículo</li>
+              <li>Concorre ao sorteio da Starlink</li>
+            </ul>
+            <button className="offer-cta-btn">QUERO ESSA</button>
+          </div>
+
+          {/* 3. MAX VISION (High-Ticket) */}
           <div className="offer-card" onClick={() => openWa(WA_LINKS.maxvision, 'Max Vision')}>
             <div className="offer-name">Max Vision</div>
             <div className="offer-price-old">de R$ 2.000</div>
             <div className="offer-price-new"><span>R$</span>1.799</div>
-            <div className="offer-savings">Economia de R$201</div>
+            {/* Economia removida conforme solicitado */}
             <ul className="offer-features">
-              <li>Tecnologia máxima</li>
-              <li>Visibilidade perfeita</li>
-              <li>Proteção total UV/IR</li>
-              <li>Concorre ao sorteio</li>
+              <li><strong>Tecnologia Nano-Cerâmica de Ponta</strong></li>
+              <li><strong>Máxima rejeição infravermelha (Calor Extremo)</strong></li>
+              <li>Visibilidade HD Cristialina (Noite e Chuva)</li>
+              <li>Camada Anti-Risco de alta durabilidade</li>
+              <li>Proteção máxima de estofados e painel</li>
+              <li>Segurança aumentada (Anti-estilhaço)</li>
+              <li>Concorre ao sorteio da Starlink</li>
             </ul>
-            <button className="offer-cta-btn">Quero essa → WhatsApp</button>
+            <button className="offer-cta-btn">QUERO ESSA</button>
           </div>
 
         </div>
