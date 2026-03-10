@@ -107,20 +107,19 @@ export default function Home() {
         <div className="hero-overlay" />
 
         <div className="hero-content">
-          <div className="logo">ILHA FILMS · <span>São Luís — MA</span></div>
+          <div className="logo">ILHA FILMS · <span className="blue">PELÍCULAS ORIGINAIS</span></div>
 
           <div className="badge">Promoção Março & Abril</div>
 
           <h1>
-            <span className="white">Vença o calor de São Luís e transforme seu carro em uma </span>
-            <span className="blue">zona de conforto.</span>
+            <span className="white">INSTALE PELÍCULA PREMIUM </span>
+            <span className="blue">E CONCORRA A UMA STARLINK MINI.</span>
           </h1>
 
           <p className="hero-sub">
-            Reduza drasticamente o calor interno com nossas películas{' '}
-            <strong>Window Premium, Blue e Max Vision</strong>. Garanta seu bônus de{' '}
-            <strong>R$500 OFF</strong> e participe automaticamente do sorteio da{' '}
-            <strong>Starlink Mini</strong>.
+            Reduza em até 80% o calor interno com nossas películas{' '}
+            <strong>Window Premium, Blue e Max Vision</strong> e ainda concorra a uma{' '}
+            <strong>Starlink Mini</strong> exclusiva.
           </p>
 
           {/* Urgência acima do CTA */}
@@ -274,14 +273,6 @@ export default function Home() {
         Sorteio realizado em maio. Prêmio: Mini Starlink. Não inclui instalação. Não conversível em dinheiro.<br />
         © 2026 Ilha Films. Todos os direitos reservados.
       </footer>
-
-      {/* ── STICKY CTA MOBILE ── */}
-      <div className="sticky-cta">
-        <button onClick={() => openWa(WA_LINKS.geral, 'Sticky Mobile')}>
-          <WaIcon />
-          RESGATAR R$500,00 OFF
-        </button>
-      </div>
     </>
   )
 }
