@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Ilha Films — Instale Película e Concorra a uma Starlink Mini</title>
 
-        {/* ── META PIXEL 1773078346 ── */}
+        {/* ── META PIXEL 1463619988729054 ── */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1773078346');
+              fbq('init', '1463619988729054');
               fbq('track', 'PageView');
             `,
           }}
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1773078346&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=1463619988729054&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
