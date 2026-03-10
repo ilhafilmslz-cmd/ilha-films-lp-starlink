@@ -206,6 +206,7 @@ export default function Home() {
         
         <div className="testimonials-grid">
           <div className="testimonial-card">
+            {/* Se a imagem não aparecer, verifique se ela está na pasta /public e se o nome está exato */}
             <img src="/print1.jpg" alt="Depoimento Cliente 1" className="testimonial-img" />
             <p className="testimonial-text">"Ficou show de bola!"</p>
           </div>
@@ -231,6 +232,35 @@ export default function Home() {
           </p>
         </div>
       </div>
+
+      {/* ── BENEFÍCIOS (RESTAURADOS) ── */}
+      <section className="section">
+        <p className="section-label">Por que Ilha Films</p>
+        <h2 className="section-title">Película de verdade</h2>
+        <div className="divider" />
+        <div className="benefits-grid">
+          <div className="benefit-card">
+            <span className="benefit-icon">🌡️</span>
+            <div className="benefit-title">Menos calor</div>
+            <p className="benefit-desc">Reduz drasticamente o calor no interior do carro. Essencial em São Luís.</p>
+          </div>
+          <div className="benefit-card">
+            <span className="benefit-icon">🕶️</span>
+            <div className="benefit-title">Mais privacidade</div>
+            <p className="benefit-desc">Vidros escurecidos com qualidade e dentro da legislação.</p>
+          </div>
+          <div className="benefit-card">
+            <span className="benefit-icon">☀️</span>
+            <div className="benefit-title">Proteção UV</div>
+            <p className="benefit-desc">Bloqueia raios UV que danificam o interior e a pele.</p>
+          </div>
+          <div className="benefit-card">
+            <span className="benefit-icon">✅</span>
+            <div className="benefit-title">Aplicação profissional</div>
+            <p className="benefit-desc">Equipe especializada, sem bolhas, sem imperfeições.</p>
+          </div>
+        </div>
+      </section>
 
       {/* ── FINAL CTA ── */}
       <div className="final-cta">
